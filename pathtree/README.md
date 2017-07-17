@@ -69,3 +69,4 @@ The following experiments (or version) were created:
    exists.
 3. Simple pathtree that tries to use maps for storing children instead of an
    array.
+4. A full pathtree with static and dynamic paths with params.
