@@ -62,3 +62,5 @@ pathtree:
 The following experiments (or version) were created:
 
 0. Simple pathtree that can store static paths.
+1. Simple pathtree that can store static paths for some of the Go source
+   directory paths.

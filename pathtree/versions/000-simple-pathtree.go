@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"strings"
-	"time"
 )
 
 type node struct {
@@ -22,6 +20,7 @@ func (n *node) print(indent string) {
 
 // add the path to the path tree
 func (n *node) add(path string) {
+	fmt.Println("Inserting path:", path)
 	components := strings.Split(path, "/")[1:]
 
 	if len(components) == 1 && n.component == components[0] {
@@ -54,24 +53,20 @@ func main() {
 	// Here we are removing slashes from all paths therefore name=""
 	tree := &node{component: ""}
 
-	data, err := ioutil.ReadFile("golang_src_paths.txt")
-	if err != nil {
-		panic(err)
-	}
-	paths := strings.Split(string(data), "\n")
-	st := time.Now()
+	// Add a new path to the tree
+	tree.add("/hello")
 
-	for _, path := range paths {
-		if len(path) == 0 || path[len(path)-3:] == ".go" {
-			continue
-		}
-		tree.add(path)
-	}
-	dur := time.Since(st)
+	// Adding "/" should do nothing
+	tree.add("/")
+
+	// Adding some more paths
+	tree.add("/users")
+	tree.add("/hello/world")
+	tree.add("users/world")
+	tree.add("/how/are/you/doing")
+	tree.add("/abc//def//ghi")
+
 	// Print the tree
 	fmt.Println("\n\nPathtree after inserts: ")
 	tree.print("")
-
-	// Print total time
-	fmt.Printf("\n\nTotal time for inserting %d paths:  %v\n", len(paths), dur)
 }
