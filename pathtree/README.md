@@ -67,3 +67,5 @@ The following experiments (or version) were created:
 2. Simple pathtree that can store static paths and a handler function
    associated with the paths; and retrieve the handler for a given path if it
    exists.
+3. Simple pathtree that tries to use maps for storing children instead of an
+   array.
